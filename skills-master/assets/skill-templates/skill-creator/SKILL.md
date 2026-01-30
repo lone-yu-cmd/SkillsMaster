@@ -28,6 +28,24 @@ A valid SKILL requires:
 1. **Directory**: `skills/<skill-name>/`
 2. **File**: `SKILL.md` inside the directory
 
+## Path & Environment Constraints
+
+**CRITICAL: All new skills MUST strictly adhere to the following path conventions to ensure cross-IDE compatibility (VS Code, Antigravity, codebuddy, PyCharm, etc.):**
+
+1.  **Base Directory Placeholder**:
+    *   ALWAYS use `${SKILL_DIR}` as the placeholder for the skill's root directory.
+    *   NEVER use hardcoded absolute paths (e.g., `/Users/name/...`) or IDE-specific variables (e.g., `${workspaceFolder}`).
+
+2.  **Relative Paths**:
+    *   All file references within the skill documentation, configuration, and scripts must be relative to `${SKILL_DIR}`.
+    *   Example: Use `${SKILL_DIR}/scripts/run.py` instead of `./scripts/run.py` or `scripts/run.py`.
+
+3.  **Configuration & Dependencies**:
+    *   Ensure all config files, dependency declarations, and execution scripts utilize `${SKILL_DIR}` for path resolution.
+
+4.  **Installation Instructions**:
+    *   The skill's `SKILL.md` MUST include an "Installation" section that explicitly explains the `${SKILL_DIR}` mechanism.
+
 ## SKILL.md Format
 
 ```markdown
@@ -38,7 +56,14 @@ description: "<concise description covering: (1) what the skill does, (2) when t
 
 # <Skill Title>
 
-<Detailed instructions, usage guidelines, and examples>
+## Installation
+
+The `${SKILL_DIR}` placeholder represents the absolute path to this skill's directory. It is automatically resolved by the environment when the skill is invoked.
+
+## Usage
+
+<Detailed instructions using ${SKILL_DIR} for all path references>
+Example: `python3 ${SKILL_DIR}/scripts/main.py`
 ```
 
 ## Creation Steps
@@ -53,6 +78,7 @@ description: "<concise description covering: (1) what the skill does, (2) when t
    - Generate `SKILL.md` with proper frontmatter
    - Update the global skills index (`README.md`)
 4. Validate the structure is correct
+5. **Verify Cross-IDE Compatibility**: Ensure the skill works in different IDEs (VS Code, Antigravity, codebuddy, PyCharm) without path errors.
 
 ## Example
 

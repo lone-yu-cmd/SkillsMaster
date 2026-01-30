@@ -28,13 +28,18 @@ description: "{description}"
 
 {description}
 
+## Installation
+
+The `${{SKILL_DIR}}` placeholder represents the absolute path to this skill's directory. It is automatically resolved by the environment when the skill is invoked.
+
 ## Usage
 
-<!-- Add usage instructions here -->
+<!-- Add usage instructions here using ${{SKILL_DIR}} for paths -->
+Example: `python3 ${{SKILL_DIR}}/scripts/main.py`
 
 ## Implementation
 
-Scripts are located in the `scripts/` directory.
+Scripts are located in the `${{SKILL_DIR}}/scripts/` directory.
 """
     
     with open(os.path.join(skill_path, "SKILL.md"), "w") as f:
